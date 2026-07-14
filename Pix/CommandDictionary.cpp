@@ -4,6 +4,10 @@
 #include "CmdSetResolution.h"
 #include "CmdVarFloat.h"
 #include"CmdSetColor.h"
+#include"CmdBeginDraw.h"
+#include"CmdVertex.h"
+#include"CmdEndDraw.h"
+#include"CmdSetFillMode.h"
 
 CommandDictionary* CommandDictionary::Get()
 {
@@ -26,6 +30,12 @@ CommandDictionary::CommandDictionary()
 
 	//Set Color commands
 	RegisterCommand<CmdSetColor>();
+
+	//Primitives commands
+	RegisterCommand<CmdBeginDraw>();
+	RegisterCommand<CmdVertex>();
+	RegisterCommand<CmdEndDraw>();
+	RegisterCommand<CmdSetFillMode>();
 }
 
 TextEditor::LanguageDefinition CommandDictionary::GenerateLanguageDefinition()
