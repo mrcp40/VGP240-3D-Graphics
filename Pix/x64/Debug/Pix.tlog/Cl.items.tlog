@@ -1,9 +1,12 @@
+D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\Clipper.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\Clipper.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdBeginDraw.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdBeginDraw.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdEndDraw.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdEndDraw.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdDrawPixel.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdDrawPixel.obj
+D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdSetClipping.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdSetClipping.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdSetColor.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdSetColor.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdSetFillMode.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdSetFillMode.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdSetResolution.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdSetResolution.obj
+D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdSetViewport.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdSetViewport.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdVarFloat.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdVarFloat.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdVertex.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdVertex.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CommandDictionary.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CommandDictionary.obj

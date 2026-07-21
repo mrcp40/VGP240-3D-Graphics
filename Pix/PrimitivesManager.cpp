@@ -1,6 +1,6 @@
 #include"PrimitivesManager.h"
 #include"Rasterizer.h"
-
+#include"Clipper.h"
 
 PrimitivesManager::PrimitivesManager()
 {
@@ -39,26 +39,39 @@ void PrimitivesManager::EndDraw()
 	{
 		for (uint32_t i = 0; i < mVertexBuffer.size(); ++i)
 		{
-			Rasterizer::Get()->DrawPoints(mVertexBuffer[i]);
+			if (!Clipper::Get()->ClipPoint(mVertexBuffer[i]))
+			{
+				Rasterizer::Get()->DrawPoints(mVertexBuffer[i]);
+			}
 		}
 	}
-		break;
+	break;
 	case Topology::Line:
 	{
-		for (uint32_t i = 1; i < mVertexBuffer.size(); i+=2)
+		for (uint32_t i = 1; i < mVertexBuffer.size(); i += 2)
 		{
-			Rasterizer::Get()->DrawLines(mVertexBuffer[i - 1], mVertexBuffer[i]);
+			if (!Clipper::Get()->ClipLine(mVertexBuffer[i - 1], mVertexBuffer[i]))
+			{
+				Rasterizer::Get()->DrawLines(mVertexBuffer[i - 1], mVertexBuffer[i]);
+			}
 		}
 	}
-		break;
+	break;
 	case Topology::Triangle:
 	{
-		for (uint32_t i = 2; i < mVertexBuffer.size(); i+=3)
+		for (uint32_t i = 2; i < mVertexBuffer.size(); i += 3)
 		{
-			Rasterizer::Get()->DrawTriangles(mVertexBuffer[i-2],mVertexBuffer[i-1],mVertexBuffer[i]);
+			std::vector<Vertex> triangle = { mVertexBuffer[i - 2], mVertexBuffer[i - 1], mVertexBuffer[i] };
+			if (!Clipper::Get()->ClipTriangle(triangle))
+			{
+				for (size_t t = 2; t < triangle.size(); ++t)
+				{
+					Rasterizer::Get()->DrawTriangles(triangle[0],triangle[t-1],triangle[t]);
+				}
+			}
 		}
 	}
-		break;
+	break;
 	default:
 		break;
 	}
