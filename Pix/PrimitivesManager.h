@@ -15,13 +15,24 @@ enum class Topology
 	Triangle
 };
 
+enum class CullMode
+{
+	None, 
+	Back,
+	Front,
+};
+
 class PrimitivesManager
 {
 public:
 	static PrimitivesManager* Get();
 
+	void OnNewFrame();
+	void SetCullMode(CullMode mode);
+
+
 	//start accepting verteices
-	bool BeginDraw(Topology topology);
+	bool BeginDraw(Topology topology,bool applyTransform);
 	//Add vertex to manager
 	void AddVertex(const Vertex& v);
 	//Send all the stored vertices to render, as specified
@@ -32,5 +43,7 @@ private:
 
 	std::vector<Vertex> mVertexBuffer;
 	Topology mTopology = Topology::Point;
+	CullMode mCullMode = CullMode::None;
 	bool mDrawBegin = false;
+	bool mApplyTransform;
 };

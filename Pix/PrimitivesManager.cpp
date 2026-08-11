@@ -1,6 +1,53 @@
-#include"PrimitivesManager.h"
-#include"Rasterizer.h"
-#include"Clipper.h"
+#include "PrimitivesManager.h"
+#include "Rasterizer.h"
+#include "Clipper.h"
+#include "MatrixStack.h"
+#include "Camera.h"
+
+extern float gResolutionX;
+extern float gResolutionY;
+
+namespace
+{
+	Matrix4 GetScreenTransform()
+	{
+		const float hw = gResolutionX * 0.5f;
+		const float hh = gResolutionY * 0.5f;
+		return{
+			  hw,0.0f,0.0f,0.0f,
+			0.0f, -hh,0.0f,0.0f,
+			0.0f,0.0f,1.0f,0.0f,
+			  hw,  hh,0.0f,1.0f,
+		};
+	}
+
+	Vector3 CreateFaceNormal(const std::vector<Vertex>& triangle)
+	{
+		//take b-a cross product c-a
+		const Vector3 a = triangle[0].pos;
+		const Vector3 b = triangle[1].pos;
+		const Vector3 c = triangle[2].pos;
+		Vector3 norm = MathHelper::Normalize(MathHelper::Cross(b - a, c - a));
+		return norm;
+	}
+	bool CullTriangle(CullMode mode, const std::vector<Vertex>& triangle)
+	{
+		if (mode == CullMode::None)
+		{
+			return false;
+		}
+		Vector3 faceNormal = CreateFaceNormal(triangle);
+		if (mode == CullMode::Back)
+		{
+			return faceNormal.z > 0.0f;
+		}
+		if (mode == CullMode::Front)
+		{
+			return faceNormal.z < 0.0f;
+		}
+		return false;
+	}
+}
 
 PrimitivesManager::PrimitivesManager()
 {
@@ -12,10 +59,19 @@ PrimitivesManager* PrimitivesManager::Get()
 	static PrimitivesManager sInstance;
 	return &sInstance;
 }
-bool PrimitivesManager::BeginDraw(Topology topology)
+void PrimitivesManager::OnNewFrame()
+{
+	mCullMode = CullMode::Back;
+}
+void PrimitivesManager::SetCullMode(CullMode mode)
+{
+	mCullMode = mode;
+}
+bool PrimitivesManager::BeginDraw(Topology topology,bool applyTransform)
 {
 	mVertexBuffer.clear();
 	mTopology = topology;
+	mApplyTransform = applyTransform;
 	mDrawBegin = true;
 	return true;
 }
@@ -32,6 +88,17 @@ void PrimitivesManager::EndDraw()
 	{
 		return;
 	}
+	//apply transformation pipeline
+	Matrix4 matrixWorld = MatrixStack::Get()->GetTransforma();
+	//view matrix from the camera
+	Matrix4 matrixView = Camera::Get()->GetViewMatrix();
+	//projection matrix from the camera
+	Matrix4 matrixProj = Camera::Get()->GetProjectionMatrix();
+	//screen space matrix from the screen
+	Matrix4 matrixScreen = GetScreenTransform();
+	//full transformation pipeline
+	//Matrix4 matrixFinal = matrixWorld * matrixView * matrixProj * matrixScreen;
+	Matrix4 matrixNDXSpace = matrixWorld * matrixView * matrixProj;
 
 	switch (mTopology)
 	{
@@ -62,6 +129,28 @@ void PrimitivesManager::EndDraw()
 		for (uint32_t i = 2; i < mVertexBuffer.size(); i += 3)
 		{
 			std::vector<Vertex> triangle = { mVertexBuffer[i - 2], mVertexBuffer[i - 1], mVertexBuffer[i] };
+			if (mApplyTransform)
+			{
+				// transform to NDC space, check if we can draw
+				// use three points of triangle to makes a normal direction
+				// check the normal if it should be culled
+				for (size_t t = 0; t < triangle.size(); ++t)
+				{
+					//transforming all positions to NDC space
+					triangle[t].pos = MathHelper::TransformCoord(triangle[t].pos,matrixNDXSpace);
+				}
+
+				if (CullTriangle(mCullMode, triangle))
+				{
+					continue;
+				}
+
+				for (size_t t = 0; t < triangle.size(); ++t)
+				{
+					triangle[t].pos = MathHelper::TransformCoord(triangle[t].pos, matrixScreen);
+					MathHelper::FlattenVectorScreenCoord(triangle[t].pos);
+				}
+			}
 			if (!Clipper::Get()->ClipTriangle(triangle))
 			{
 				for (size_t t = 2; t < triangle.size(); ++t)

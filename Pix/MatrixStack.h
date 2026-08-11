@@ -1,0 +1,24 @@
+#pragma once
+#include "MathHelper.h"
+#include <vector>
+
+
+class MatrixStack
+{
+public:
+	static MatrixStack* Get();
+
+	void OnNewFrame();
+
+	void PushTranslation(const Vector3& d);
+	void PushRotationX(float radians);
+	void PushRotationY(float radians);
+	void PushRotationZ(float radians);
+	void PushScalling(const Vector3& s);
+	void PopMatrix();
+
+	const Matrix4& GetTransforma() const;
+private:
+	std::vector<Matrix4> mMatrices;
+	Matrix4 mCombinedTransform;
+};

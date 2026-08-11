@@ -12,10 +12,11 @@ public:
 	const char* GetDescription() override
 	{
 		return
-		"BeginDraw(topology)\n"
+		"BeginDraw(topology,<applyTransform>)\n"
 		"\n"
 		"- Starts storing vertices\n"
-		"- topology (point, line, triangle)\n";
+		"- topology (point, line, triangle)\n"
+		"- (optional) aaply transform to apply 3D pipeline transformation to vertices";
 	}
 
 	bool Execute(const std::vector<std::string>& params) override;

@@ -1,5 +1,4 @@
 #include "Viewport.h"
-
 #include <XEngine.h>
 
 Viewport* Viewport::Get()
