@@ -3,6 +3,7 @@
 #include "Clipper.h"
 #include "MatrixStack.h"
 #include "Camera.h"
+#include "LightManager.h"
 
 extern float gResolutionX;
 extern float gResolutionY;
@@ -98,7 +99,7 @@ void PrimitivesManager::EndDraw()
 	Matrix4 matrixScreen = GetScreenTransform();
 	//full transformation pipeline
 	//Matrix4 matrixFinal = matrixWorld * matrixView * matrixProj * matrixScreen;
-	Matrix4 matrixNDXSpace = matrixWorld * matrixView * matrixProj;
+	Matrix4 matrixNDXSpace =  matrixView * matrixProj;
 
 	switch (mTopology)
 	{
@@ -131,9 +132,24 @@ void PrimitivesManager::EndDraw()
 			std::vector<Vertex> triangle = { mVertexBuffer[i - 2], mVertexBuffer[i - 1], mVertexBuffer[i] };
 			if (mApplyTransform)
 			{
+				// mat world to transform into world space
+				// lighting is done in world space
+				// WORLD SPACE ========================================================================
+				for (size_t t = 0; t < triangle.size(); ++t)
+				{
+					//transforming all positions to NDC space
+					triangle[t].pos = MathHelper::TransformCoord(triangle[t].pos, matrixWorld);
+				}
+				Vector3 faceNorm = CreateFaceNormal(triangle);
+				for (size_t t = 0; t < triangle.size(); ++t)
+				{
+					triangle[t].color *= LightManager::Get()->ComputeLightColor(triangle[t].pos, faceNorm);
+				}
+
 				// transform to NDC space, check if we can draw
 				// use three points of triangle to makes a normal direction
 				// check the normal if it should be culled
+				// NDC SPACE ========================================================================
 				for (size_t t = 0; t < triangle.size(); ++t)
 				{
 					//transforming all positions to NDC space
