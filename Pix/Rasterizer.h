@@ -9,6 +9,13 @@ enum class FillMode
 	Solid
 };
 
+enum class ShadeMode
+{
+	Flat,
+	Gouraud,
+	Phong
+};
+
 class Rasterizer
 {
 public:
@@ -18,6 +25,8 @@ public:
 	void SetColor(X::Color color);
 	void SetFillMode(FillMode fillMode);
 	void DrawPoint(int x, int y);
+	void SetShadeMode(ShadeMode shadeMode);
+	ShadeMode GetShadeMode() const;
 
 
 	void DrawPoints(const Vertex& v);
@@ -28,4 +37,5 @@ private:
 	void DrawFilledTriangle(const Vertex& a, const Vertex& b, const Vertex& c);
 	X::Color mColor = X::Colors::White;
 	FillMode mFillmode = FillMode::WireFrame;
+	ShadeMode mShadeMode = ShadeMode::Phong;
 };

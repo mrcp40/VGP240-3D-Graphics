@@ -68,7 +68,7 @@ void PrimitivesManager::SetCullMode(CullMode mode)
 {
 	mCullMode = mode;
 }
-bool PrimitivesManager::BeginDraw(Topology topology,bool applyTransform)
+bool PrimitivesManager::BeginDraw(Topology topology, bool applyTransform)
 {
 	mVertexBuffer.clear();
 	mTopology = topology;
@@ -99,8 +99,9 @@ void PrimitivesManager::EndDraw()
 	Matrix4 matrixScreen = GetScreenTransform();
 	//full transformation pipeline
 	//Matrix4 matrixFinal = matrixWorld * matrixView * matrixProj * matrixScreen;
-	Matrix4 matrixNDXSpace =  matrixView * matrixProj;
+	Matrix4 matrixNDXSpace = matrixView * matrixProj;
 
+	ShadeMode shadeMode = Rasterizer::Get()->GetShadeMode();
 	switch (mTopology)
 	{
 	case Topology::Point:
@@ -132,6 +133,18 @@ void PrimitivesManager::EndDraw()
 			std::vector<Vertex> triangle = { mVertexBuffer[i - 2], mVertexBuffer[i - 1], mVertexBuffer[i] };
 			if (mApplyTransform)
 			{
+				// add normals to the vertices
+				// LOCAL SPACE ========================================================================
+				if (MathHelper::CheckEqual(MathHelper::MagnitudeSquared(triangle[0].norm), 0.0f))
+				{
+					Vector3 faceNorm = CreateFaceNormal(triangle);
+					for (size_t t = 0; t < triangle.size(); ++t)
+					{
+						triangle[t].norm = faceNorm;
+					}
+				}
+				
+
 				// mat world to transform into world space
 				// lighting is done in world space
 				// WORLD SPACE ========================================================================
@@ -139,12 +152,25 @@ void PrimitivesManager::EndDraw()
 				{
 					//transforming all positions to NDC space
 					triangle[t].pos = MathHelper::TransformCoord(triangle[t].pos, matrixWorld);
+					triangle[t].worldPos = triangle[t].pos;
+					triangle[t].norm = MathHelper::TransformNormal(triangle[t].norm, matrixWorld);
 				}
-				Vector3 faceNorm = CreateFaceNormal(triangle);
-				for (size_t t = 0; t < triangle.size(); ++t)
+
+				if (shadeMode == ShadeMode::Flat)
 				{
-					triangle[t].color *= LightManager::Get()->ComputeLightColor(triangle[t].pos, faceNorm);
+					X::Color lightColor= LightManager::Get()->ComputeLightColor(triangle[0].pos, triangle[0].norm);
+					triangle[0].color *= lightColor;
+					triangle[1].color *= lightColor;
+					triangle[2].color *= lightColor;
 				}
+				else if (shadeMode == ShadeMode::Gouraud)
+				{
+					for (size_t t = 0; t < triangle.size(); ++t)
+					{
+						triangle[t].color *= LightManager::Get()->ComputeLightColor(triangle[t].pos, triangle[t].norm);
+					}
+				}
+
 
 				// transform to NDC space, check if we can draw
 				// use three points of triangle to makes a normal direction
@@ -153,7 +179,7 @@ void PrimitivesManager::EndDraw()
 				for (size_t t = 0; t < triangle.size(); ++t)
 				{
 					//transforming all positions to NDC space
-					triangle[t].pos = MathHelper::TransformCoord(triangle[t].pos,matrixNDXSpace);
+					triangle[t].pos = MathHelper::TransformCoord(triangle[t].pos, matrixNDXSpace);
 				}
 
 				if (CullTriangle(mCullMode, triangle))
@@ -171,7 +197,7 @@ void PrimitivesManager::EndDraw()
 			{
 				for (size_t t = 2; t < triangle.size(); ++t)
 				{
-					Rasterizer::Get()->DrawTriangles(triangle[0],triangle[t-1],triangle[t]);
+					Rasterizer::Get()->DrawTriangles(triangle[0], triangle[t - 1], triangle[t]);
 				}
 			}
 		}

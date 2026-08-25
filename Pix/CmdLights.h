@@ -2,7 +2,7 @@
 
 #include "Command.h"
 
-class CmdSetLightAmbient:public Command
+class CmdSetLightAmbient :public Command
 {
 public:
 	const char* GetName() override
@@ -88,6 +88,24 @@ public:
 			"\n"
 			"- adds a point light to the scene"
 			"- can modify the attenuation constants";
+	}
+
+	bool Execute(const std::vector<std::string>& params) override;
+};
+
+class CmdAddSpotLight :public Command
+{
+public:
+	const char* GetName() override
+	{
+		return "AddSpotLight";
+	}
+	const char* GetDescription() override
+	{
+		return
+			"AddSpotLight(pX, pY, pZ, dX, dY, dZ, <const>, <linear>, <quad>, <angle>, <decay>)\n"
+			"\n"
+			"- adds a SPOT light to the scene";
 	}
 
 	bool Execute(const std::vector<std::string>& params) override;

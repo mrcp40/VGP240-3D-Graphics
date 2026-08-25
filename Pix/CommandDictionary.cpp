@@ -18,6 +18,8 @@
 #include "CmdEnableDepth.h"
 #include "CmdMaterial.h"
 #include "CmdLights.h"
+#include "CmdSetShadeMode.h"
+#include "CmdModel.h"
 
 CommandDictionary* CommandDictionary::Get()
 {
@@ -41,6 +43,8 @@ CommandDictionary::CommandDictionary()
 
 	// Rasterization commands
 	RegisterCommand<CmdDrawPixel>();
+	RegisterCommand<CmdSetShadeMode>();
+	RegisterCommand<CmdModel>();
 
 	//Set Color commands
 	RegisterCommand<CmdSetColor>();
@@ -81,6 +85,7 @@ CommandDictionary::CommandDictionary()
 	RegisterCommand<CmdSetLightSpecular>();
 	RegisterCommand<CmdAddDirectionalLight>();
 	RegisterCommand<CmdAddPointLight>();
+	RegisterCommand<CmdAddSpotLight>();
 }
 
 TextEditor::LanguageDefinition CommandDictionary::GenerateLanguageDefinition()

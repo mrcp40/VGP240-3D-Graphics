@@ -1,5 +1,7 @@
 #include "Rasterizer.h"
 #include "DepthBuffer.h"
+#include "LightManager.h"
+
 
 //slope <= 1
 //left is smaller x position, right is the bigger one
@@ -51,11 +53,26 @@ void Rasterizer::DrawPoint(int x, int y)
 	X::DrawPixel(x, y, mColor);
 }
 
+void Rasterizer::SetShadeMode(ShadeMode shadeMode)
+{
+	mShadeMode = shadeMode;
+}
+
+ShadeMode Rasterizer::GetShadeMode() const
+{
+	return mShadeMode;
+}
+
 void Rasterizer::DrawPoints(const Vertex& v)
 {
 	if (DepthBuffer::Get()->CheckDepthBuffer(v.pos.x, v.pos.y, v.pos.z))
 	{
-		X::DrawPixel(v.pos.x, v.pos.y, v.color);
+		X::Color pixelColor = v.color;
+		if (mShadeMode == ShadeMode::Phong)
+		{
+			pixelColor *= LightManager::Get()->ComputeLightColor(v.worldPos, v.norm);
+		}
+		X::DrawPixel(v.pos.x, v.pos.y, pixelColor);
 	}
 }
 

@@ -3,8 +3,8 @@ SetResolution(500, 500, 1)
 SetViewport(50, 50, 400, 400)
 SetClipping(true)
 SetCullMode(back)
-ShowViewport(true)
 EnableDepth(true)
+SetShadeMode(gouraud)
 
 float $camX = 0, 0.01
 float $camY = 0, 0.01
@@ -146,3 +146,4 @@ Vertex(1, -1, -1, 0.0, 0.5, 0.5)
 Vertex(1, -1, 1, 0.0, 0.5, 0.5)
 
 EndDraw()
+
