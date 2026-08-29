@@ -20,6 +20,10 @@
 #include "CmdLights.h"
 #include "CmdSetShadeMode.h"
 #include "CmdModel.h"
+#include "CmdSetTexture.h"
+#include "CmdCorrectUV.h"
+#include "CmdUseFilter.h"
+#include "CmdSetAddressMode.h"
 
 CommandDictionary* CommandDictionary::Get()
 {
@@ -45,6 +49,9 @@ CommandDictionary::CommandDictionary()
 	RegisterCommand<CmdDrawPixel>();
 	RegisterCommand<CmdSetShadeMode>();
 	RegisterCommand<CmdModel>();
+	RegisterCommand<CmdSetTexture>();
+	RegisterCommand<CmdUseFilter>();
+	RegisterCommand<CmdSetAddressMode>();
 
 	//Set Color commands
 	RegisterCommand<CmdSetColor>();
@@ -56,6 +63,7 @@ CommandDictionary::CommandDictionary()
 	RegisterCommand<CmdSetFillMode>();
 	RegisterCommand<CmdSetCullMode>();
 	RegisterCommand<CmdEnableDepth>();
+	RegisterCommand<CmdCorrectUV>();
 
 	//Matrix Stack commands
 	RegisterCommand<CmdPushTranslation>();

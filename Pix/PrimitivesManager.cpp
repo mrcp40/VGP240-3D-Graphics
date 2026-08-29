@@ -52,7 +52,6 @@ namespace
 
 PrimitivesManager::PrimitivesManager()
 {
-
 }
 
 PrimitivesManager* PrimitivesManager::Get()
@@ -63,10 +62,15 @@ PrimitivesManager* PrimitivesManager::Get()
 void PrimitivesManager::OnNewFrame()
 {
 	mCullMode = CullMode::Back;
+	mCorrectUV = false;
 }
 void PrimitivesManager::SetCullMode(CullMode mode)
 {
 	mCullMode = mode;
+}
+void PrimitivesManager::SetCorrectUV(bool correctUV)
+{
+	mCorrectUV = correctUV;
 }
 bool PrimitivesManager::BeginDraw(Topology topology, bool applyTransform)
 {
@@ -143,7 +147,7 @@ void PrimitivesManager::EndDraw()
 						triangle[t].norm = faceNorm;
 					}
 				}
-				
+
 
 				// mat world to transform into world space
 				// lighting is done in world space
@@ -155,19 +159,32 @@ void PrimitivesManager::EndDraw()
 					triangle[t].worldPos = triangle[t].pos;
 					triangle[t].norm = MathHelper::TransformNormal(triangle[t].norm, matrixWorld);
 				}
-
-				if (shadeMode == ShadeMode::Flat)
+				if (triangle[0].color.z >= 0.0f) // 若不是UV则进行shading
 				{
-					X::Color lightColor= LightManager::Get()->ComputeLightColor(triangle[0].pos, triangle[0].norm);
-					triangle[0].color *= lightColor;
-					triangle[1].color *= lightColor;
-					triangle[2].color *= lightColor;
-				}
-				else if (shadeMode == ShadeMode::Gouraud)
-				{
-					for (size_t t = 0; t < triangle.size(); ++t)
+					if (shadeMode == ShadeMode::Flat)
 					{
-						triangle[t].color *= LightManager::Get()->ComputeLightColor(triangle[t].pos, triangle[t].norm);
+						X::Color lightColor = LightManager::Get()->ComputeLightColor(triangle[0].pos, triangle[0].norm);
+						triangle[0].color *= lightColor;
+						triangle[1].color *= lightColor;
+						triangle[2].color *= lightColor;
+					}
+					else if (shadeMode == ShadeMode::Gouraud)
+					{
+						for (size_t t = 0; t < triangle.size(); ++t)
+						{
+							triangle[t].color *= LightManager::Get()->ComputeLightColor(triangle[t].pos, triangle[t].norm);
+						}
+					}
+				}
+				else if (mCorrectUV)
+				{
+					// 在 viewspace 应用 uv
+					for (uint32_t t = 0; t < triangle.size(); ++t)
+					{
+						Vector3 viewSpace = MathHelper::TransformCoord(triangle[t].worldPos, matrixView);
+						triangle[t].color.x /= viewSpace.z;
+						triangle[t].color.y /= viewSpace.z;
+						triangle[t].color.w = 1.0f/ viewSpace.z;
 					}
 				}
 

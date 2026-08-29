@@ -2,6 +2,7 @@ D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\Camera.cpp;D:\Lasalle\S5\3D Gra
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\Clipper.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\Clipper.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdBeginDraw.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdBeginDraw.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdCamrea.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdCamrea.obj
+D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdCorrectUV.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdCorrectUV.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdEnableDepth.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdEnableDepth.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdEndDraw.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdEndDraw.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdDrawPixel.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdDrawPixel.obj
@@ -9,13 +10,16 @@ D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdLights.cpp;D:\Lasalle\S5\3D 
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdMaterial.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdMaterial.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdMatrixStack.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdMatrixStack.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdModel.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdModel.obj
+D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdSetAddressMode.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdSetAddressMode.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdSetClipping.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdSetClipping.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdSetColor.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdSetColor.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdSetCullMode.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdSetCullMode.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdSetFillMode.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdSetFillMode.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdSetResolution.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdSetResolution.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdSetShadeMode.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdSetShadeMode.obj
+D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdSetTexture.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdSetTexture.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdSetViewport.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdSetViewport.obj
+D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdUseFilter.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdUseFilter.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdVarBool.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdVarBool.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdVarFloat.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdVarFloat.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdVarInt.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdVarInt.obj
@@ -35,6 +39,8 @@ D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\PrimitivesManager.cpp;D:\Lasall
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\Rasterizer.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\Rasterizer.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\ScriptParser.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\ScriptParser.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\TextEditor.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\TextEditor.obj
+D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\Texture.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\Texture.obj
+D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\TextureManager.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\TextureManager.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\VariableCache.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\VariableCache.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\Viewport.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\Viewport.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\WinMain.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\WinMain.obj

@@ -29,6 +29,7 @@ public:
 
 	void OnNewFrame();
 	void SetCullMode(CullMode mode);
+	void SetCorrectUV(bool correctUV);
 
 
 	//start accepting verteices
@@ -46,4 +47,5 @@ private:
 	CullMode mCullMode = CullMode::None;
 	bool mDrawBegin = false;
 	bool mApplyTransform;
+	bool mCorrectUV = false;
 };
