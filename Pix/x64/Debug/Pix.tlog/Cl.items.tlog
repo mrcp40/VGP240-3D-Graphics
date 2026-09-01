@@ -10,6 +10,7 @@ D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdLights.cpp;D:\Lasalle\S5\3D 
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdMaterial.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdMaterial.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdMatrixStack.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdMatrixStack.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdModel.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdModel.obj
+D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdPostProcessing.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdPostProcessing.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdSetAddressMode.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdSetAddressMode.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdSetClipping.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdSetClipping.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\CmdSetColor.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\CmdSetColor.obj
@@ -35,8 +36,10 @@ D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\MatrixStack.cpp;D:\Lasalle\S5\3
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\Model.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\Model.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\ModelManager.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\ModelManager.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\PixEditor.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\PixEditor.obj
+D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\PostProcessing.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\PostProcessing.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\PrimitivesManager.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\PrimitivesManager.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\Rasterizer.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\Rasterizer.obj
+D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\RenderTarget.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\RenderTarget.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\ScriptParser.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\ScriptParser.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\TextEditor.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\TextEditor.obj
 D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\Texture.cpp;D:\Lasalle\S5\3D Graphics\VGP240-3D-Graphics\Pix\x64\Debug\Texture.obj

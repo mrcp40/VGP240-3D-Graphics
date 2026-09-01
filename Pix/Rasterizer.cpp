@@ -2,6 +2,7 @@
 #include "DepthBuffer.h"
 #include "LightManager.h"
 #include "TextureManager.h"
+#include "PostProcessing.h"
 
 
 
@@ -74,7 +75,10 @@ void Rasterizer::DrawPoints(const Vertex& v)
 		{
 			pixelColor *= LightManager::Get()->ComputeLightColor(v.worldPos, v.norm);
 		}
-		X::DrawPixel(v.pos.x, v.pos.y, pixelColor);
+		if (!PostProcessing::Get()->Draw(v.pos.x, v.pos.y, pixelColor))
+		{
+			X::DrawPixel(v.pos.x, v.pos.y, pixelColor);
+		}
 	}
 }
 
